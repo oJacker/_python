@@ -81,6 +81,7 @@ while True:
     if len(choice) == 0: continue
     if choice in menu_main_layer:
         menu_parent_layers.append(menu_main_layer)
+        #下次loop，当前用户选择，就可以直接列表的最后一个值出来就ok了
         menu_main_layer=menu_main_layer[choice]
     elif choice == "b":
         if menu_parent_layers:
