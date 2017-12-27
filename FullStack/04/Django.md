@@ -1,4 +1,4 @@
-# Django
+# Django2.0
 原则：DRP：Don't repeat yourself
 ## 一 什么是web框架？ ##
 
@@ -62,3 +62,50 @@
 		   |
 		   |
 	     数据库
+
+
+## 三 django的流程和命令行工具 ##
+	django
+	安装 pip3 install django
+	
+	1 create project 
+		django-admin startproject mysite
+	
+	---mysite
+		---setings.py
+		---url.py
+		---wsgi.py
+	---manage.py (启动文件)
+
+	2 create APP
+		python manage.py startapp blog
+
+	3 settings config
+		TEMPLATES
+			'DIRS': [os.path.join(BASE_DIR,'templates')],   # 配置 模板路径
+	4 add path in urls.py
+		from blog import  views
+		urlpatterns 中
+			path('curtime/', views.curtime),
+	5 start project 
+		python manage.py runserver 127.0.0.1:8080
+	6 produce databases 
+		python manage.py makemigrations (生成同步数据库的脚本)
+		python manage.py migrate  同步数据库
+	注意：在开发过程中，数据库同步误操作之后，难免会遇到后面不能同步成功的情况，解决这个问题的一个简单粗暴方法是把migrations目录下的脚本（除__init__.py之外）全部删掉，再把数据库删掉之后创建一个新的数据库，数据库同步操作再重新做一遍。  
+	7  setting user/passwd  
+		python manage.py createuperuser 
+	8  clear databases
+		python manage.py flush 
+	9 select command 
+		django-admin help startapp
+		admin 是django自带的一个后台数据库管理系统
+	10 	starting interface
+		 python manage.py shell
+		注释：这个命令和直接运行 python 进入 shell 的区别是：你可以在这个 shell 里面调用当前项目的 models.py 中的 API，对于操作数据，还有一些小测试非常方便。
+	11 detailed list
+		python manage.py
+
+## 四 Django的配置文件(settings) ##
+	
+	
