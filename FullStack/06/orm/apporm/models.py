@@ -2,35 +2,55 @@ from django.db import models
 
 # Create your models here.
 
-class Publish(models.Model):
+class Publisher(models.Model):
     # my_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=64)
-    city = models.CharField(max_length=63)
+    name = models.CharField(max_length=64,verbose_name="名称")
+    address = models.CharField("地址",max_length=64)
+    city = models.CharField("城市",max_length=60)
+    state_province = models.CharField(max_length=30)
+    country = models.CharField(max_length=50)
+    website = models.URLField()
 
-    def __str__(self):
-        return self.city
-
-class Author(models.Model):
-    name = models.CharField(max_length=30)
-
-    # 打印对象显示需要的内容
+    class Meta:
+        verbose_name = '出版商'
+        verbose_name_plural = verbose_name
     def __str__(self):
         return self.name
 
+class Author(models.Model):
+    name = models.CharField(max_length=30)
+    # 打印对象显示需要的内容
+
+    class Meta:
+        verbose_name = '作者'
+        verbose_name_plural = verbose_name
+    def __str__(self):
+        return self.name
+
+
+class AuthorDetail(models.Model):
+    sex = models.BooleanField(max_length=1, choices=((0,'男'),(1,'女'),))
+    email = models.EmailField()
+    address = models.CharField(max_length=50)
+    birthday = models.DateField()
+    author = models.OneToOneField(Author,on_delete=models.CASCADE,)
+
+
+
 class Book(models.Model):
     title = models.CharField(max_length=100)
-    price = models.IntegerField()
-    color = models.CharField(max_length=64)
-    page_num = models.IntegerField(null=True)
-    pulisher = models.ForeignKey("Publish", on_delete=models.CASCADE,)
+    authors = models.ManyToManyField(Author)
+    publisher = models.ForeignKey(Publisher,on_delete=models.CASCADE,)
+    publication_date = models.DateField()
+    price = models.DecimalField(max_digits=5,decimal_places=2,default=10)
 
-    # 接受对象
-    author = models.ManyToManyField("Author")
-    def __int__(self):
-        return self.price
-
+    class Meta:
+        verbose_name = '书本'
+        verbose_name_plural = verbose_name
     def __str__(self):
-        return self.title+self.color
+        return "<%s>"%self.title
+
+
 
 
 
