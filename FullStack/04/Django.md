@@ -94,7 +94,7 @@
 		python manage.py migrate  同步数据库
 	注意：在开发过程中，数据库同步误操作之后，难免会遇到后面不能同步成功的情况，解决这个问题的一个简单粗暴方法是把migrations目录下的脚本（除__init__.py之外）全部删掉，再把数据库删掉之后创建一个新的数据库，数据库同步操作再重新做一遍。  
 	7  setting user/passwd  
-		python manage.py createuperuser 
+		python manage.py createsuperuser 
 	8  clear databases
 		python manage.py flush 
 	9 select command 
@@ -106,6 +106,6 @@
 	11 detailed list
 		python manage.py
 
-## 四 Django的配置文件(settings) ##
+## 四 Django的配置文件(settings) ## 
 	
 	
