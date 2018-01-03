@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,re_path
 from sign import views
 
 urlpatterns = [
@@ -22,6 +22,10 @@ urlpatterns = [
     path('index/', views.index),  # 添加index/路径配置
     path('login_action/', views.login_action),  # login_action/路径配置
     path('event_manage/', views.event_manage),  # event_manage/路径配置
-    path('search_name/', views.search_name),  # event_manage/路径配置
+    path('search_name/', views.search_name),  # search_name/路径配置
+    path('guest_manage/', views.guest_manage),  # guest_manage/路径配置
+    path('logout/', views.logout),  # guest_manage/路径配置
+    re_path('sign_index/(?P<event_id>[0-9]+)/', views.sign_index),  # sign_index/路径配置
+    re_path('sign_index_action/(?P<event_id>[0-9]+)/', views.sign_index_action),  # sign_index/路径配置
 ]
 
