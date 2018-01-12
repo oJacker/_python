@@ -9,6 +9,7 @@ class CustomerAdmin(admin.ModelAdmin):
     raw_id_fields = ('consult_course',)
     filter_horizontal = ('tags',)
     list_editable = ('status',)
+    list_per_page = 5
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user','name')
